@@ -28,3 +28,31 @@ Promise.all(promises)
 
 
 //Завдання 2
+// Функція з випадковою затримкою
+function randomDelay(value) {
+  const delay = Math.floor(Math.random() * 4000) + 1000;
+
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(value);
+    }, delay);
+  });
+}
+
+// Масив промісів
+const racePromises = [
+  randomDelay("A"),
+  randomDelay("B"),
+  randomDelay("C"),
+  randomDelay("D"),
+  randomDelay("E"),
+];
+
+// Хто швидше
+Promise.race(racePromises)
+  .then((result) => {
+    console.log("Найшвидший результат:", result);
+  })
+  .catch((error) => {
+    console.log("Помилка:", error);
+  });
